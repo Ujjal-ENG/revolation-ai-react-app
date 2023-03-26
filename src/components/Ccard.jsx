@@ -1,13 +1,8 @@
 import React from 'react';
 
 const Ccard = (props) => {
-    const {
-        name,
-        description,
-        image,
-        published_in: { publishedIn },
-        features
-    } = props.data;
+    const { name, description, image, features } = props.data;
+    const date = props.data.published_in;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure>
@@ -16,12 +11,12 @@ const Ccard = (props) => {
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p>{description}</p>
-                {features.map((el) => (
-                    <li>{el}</li>
+                {features.map((el, i) => (
+                    <li key={i}>{el}</li>
                 ))}
                 <div className="card-actions flex justify-between items-center">
-                    <h2 className="card-title">{publishedIn}</h2>
-                    <button className="btn btn-primary">Read More</button>
+                    <h2 className="card-title">{date}</h2>
+                    <button className="btn btn-error font-bold">Read More</button>
                 </div>
             </div>
         </div>
