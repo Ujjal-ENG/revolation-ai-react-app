@@ -1,9 +1,12 @@
 import React from 'react';
+import Button from './components/Button';
+import Header from './components/Header';
 
 const App = () => {
     return (
         <>
-            <h1 className="text-3xl">Hello</h1>
+            <Header />
+            <Button color="error">Sort by Date</Button>
         </>
     );
 };
