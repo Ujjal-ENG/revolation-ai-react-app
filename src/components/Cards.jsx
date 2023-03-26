@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Button from './Button';
 import Ccard from './Ccard';
 
 const Cards = () => {
