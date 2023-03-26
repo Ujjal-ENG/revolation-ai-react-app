@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Ccard from './Ccard';
+import ShowModal from './ShowModal';
 
 const Cards = () => {
     const [data, setData] = useState('');
@@ -36,6 +37,8 @@ const Cards = () => {
                     </button>
                 </div>
             )}
+
+            <ShowModal />
         </>
     );
 };

@@ -1,24 +1,28 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import ShowModal from './ShowModal';
-
 const Ccard = (props) => {
     const { name, description, image, features } = props.data;
     const date = props.data.published_in;
 
+    const [modalID, setModalID] = useState('');
+
     const [modalData, setModalData] = useState('');
 
-    const handleReadMore = (id) => {};
-    useEffect((id) => {
-        fetChModalData(id);
+    const handleModalData = (id) => {
+        setModalID(id);
+    };
+
+    useEffect((ids) => {
+        fetChModalData(ids);
     }, []);
 
-    const fetChModalData = async (id) => {
-        const fetchData = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`);
+    const fetChModalData = async (ids) => {
+        const fetchData = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${ids}`);
         const data = fetchData.json();
         setModalData(data.data);
     };
+    console.log(modalData);
 
     return (
         <>
@@ -33,21 +37,12 @@ const Ccard = (props) => {
                     {features.map((el, i) => (
                         <li key={i}>{el}</li>
                     ))}
-                    <div className="card-actions flex justify-between items-center" onClick={() => handleReadMore(props.data.id)}>
+                    <div className="card-actions flex justify-between items-center">
                         <h2 className="card-title">{date}</h2>
 
-                        <label htmlFor="my-modal-5" className="btn btn-error font-bold">
+                        <label htmlFor="my-modal-5" className="btn btn-error font-bold" onClick={() => handleModalData(props.data.id)}>
                             Read More
                         </label>
-                    </div>
-                </div>
-
-                <div>
-                    <input type="checkbox" id="my-modal-5" className="modal-toggle" />
-                    <div className="modal">
-                        <div className="modal-box w-11/12 max-w-5xl">
-                            <ShowModal />
-                        </div>
                     </div>
                 </div>
             </div>
