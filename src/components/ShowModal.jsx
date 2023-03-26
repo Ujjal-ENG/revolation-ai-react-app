@@ -4,7 +4,8 @@ const ShowModal = (props) => {
     const { description, features, integrations } = props.modalData;
 
     const Img = props.modalData.image_link;
-    // const score = props.modalData.accuracy.score;
+    const score = props.modalData.accuracy;
+
     return (
         <>
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
@@ -29,7 +30,7 @@ const ShowModal = (props) => {
 
                         <div>
                             <img src={Img && Img[0]} alt="" className="relative" />
-                            {/* {score && <div className="badge badge-lg top-2 right-0 absolute">{score}</div>} */}
+                            {score?.score && <div className="badge badge-lg top-8 right-8 absolute">{score?.score * 100} %</div>}
                         </div>
                     </div>
 
