@@ -4,7 +4,7 @@ const ShowModal = (props) => {
     const { description, features, integrations } = props.modalData;
 
     const Img = props.modalData.image_link;
-
+    // const score = props.modalData.accuracy.score;
     return (
         <>
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
@@ -17,7 +17,7 @@ const ShowModal = (props) => {
                             <div className="flex justify-between">
                                 <div>
                                     <h3 className="font-bold text-lg">Features</h3>
-                                    {!features ? 'No data Found' : Object.values(features).map((el, i) => <li key={i}>{el.feature_name}</li>)}
+                                    {!features ? 'No data Found' : Object.values(features || {}).map((el, i) => <li key={i}>{el.feature_name}</li>)}
                                 </div>
 
                                 <div>
@@ -27,9 +27,9 @@ const ShowModal = (props) => {
                             </div>
                         </div>
 
-                        <div className="relative">
-                            <img src={Img && Img[0]} alt="" />
-                            {/* {score && score ? <div className="badge badge-lg top-2 right-0">{score}</div> : ''} */}
+                        <div>
+                            <img src={Img && Img[0]} alt="" className="relative" />
+                            {/* {score && <div className="badge badge-lg top-2 right-0 absolute">{score}</div>} */}
                         </div>
                     </div>
 
