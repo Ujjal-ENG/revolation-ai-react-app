@@ -1,28 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+
 const Ccard = (props) => {
     const { name, description, image, features } = props.data;
     const date = props.data.published_in;
-
-    const [modalID, setModalID] = useState('');
-
-    const [modalData, setModalData] = useState('');
-
     const handleModalData = (id) => {
-        setModalID(id);
+        props.handleModalData(id);
     };
-
-    useEffect((ids) => {
-        fetChModalData(ids);
-    }, []);
-
-    const fetChModalData = async (ids) => {
-        const fetchData = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${ids}`);
-        const data = fetchData.json();
-        setModalData(data.data);
-    };
-    console.log(modalData);
 
     return (
         <>
