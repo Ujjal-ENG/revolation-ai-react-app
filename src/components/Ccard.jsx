@@ -29,6 +29,7 @@ const Ccard = (props) => {
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <p>{description}</p>
+                    <h2 className="card-title">Features</h2>
                     {features.map((el, i) => (
                         <li key={i}>{el}</li>
                     ))}
