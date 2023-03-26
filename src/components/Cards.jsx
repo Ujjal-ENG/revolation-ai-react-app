@@ -1,10 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Button from './Button';
 import Ccard from './Ccard';
 
 const Cards = () => {
     const [data, setData] = useState('');
+    const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -15,13 +17,27 @@ const Cards = () => {
         const dataJson = await loadData.json();
         setData(dataJson.data.tools);
     };
+
+    const handleLoadData = () => {
+        setShowAll(!showAll);
+    };
+
     return (
-        <div className="grid grid-cols-3 gap-6 justify-items-center my-10">
-            {data &&
-                data.map((el) => {
-                    return <Ccard key={el.id} data={el} />;
-                })}
-        </div>
+        <>
+            <div className="grid grid-cols-3 gap-6 justify-items-center my-10">
+                {data &&
+                    data.slice(0, showAll ? 12 : 6).map((el) => {
+                        return <Ccard key={el.id} data={el} />;
+                    })}
+            </div>
+            {!showAll && (
+                <div className=" flex justify-center ">
+                    <button className={`btn btn-error flex justify-center font-bold`} onClick={handleLoadData}>
+                        Show More
+                    </button>
+                </div>
+            )}
+        </>
     );
 };
 

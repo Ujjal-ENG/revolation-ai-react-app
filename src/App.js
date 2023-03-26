@@ -9,7 +9,6 @@ const App = () => {
             <Header />
             <Button color="error">Sort by Date</Button>
             <Cards />
-            <Button color="success">Show More</Button>
         </>
     );
 };
