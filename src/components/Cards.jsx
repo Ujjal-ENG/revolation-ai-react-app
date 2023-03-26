@@ -5,7 +5,7 @@ import Ccard from './Ccard';
 import ShowModal from './ShowModal';
 
 const Cards = () => {
-    const [data, setData] = useState('');
+    const [data, setData] = useState([]);
     const [showAll, setShowAll] = useState(false);
     const [modalId, setModalId] = useState(null);
     const [modalData, setModalData] = useState('');
@@ -38,8 +38,19 @@ const Cards = () => {
         setModalData(data.data);
     };
 
+    const handleSort = () => {
+        const sortData = data.sort((a, b) => {
+            return new Date(a.published_in) - new Date(b.published_in);
+        });
+        setData([...data, sortData]);
+    };
     return (
         <>
+            <div className=" flex justify-center ">
+                <button className={`btn btn-error flex justify-center font-bold`} onClick={handleSort}>
+                    Sort By Date
+                </button>
+            </div>
             <div className="grid grid-cols-3 gap-6 justify-items-center my-10">
                 {data &&
                     data.slice(0, showAll ? 12 : 6).map((el) => {
